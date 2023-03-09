@@ -4,8 +4,6 @@
 int main()
 {
     bMatrix<int> A(3,3);
-    
-    std::cout << A.getElement(2) << '\n';
 
     A.setElement(2, 3);
 
@@ -15,7 +13,6 @@ int main()
 
     A.setElement(0,4);
 
-    std::cout << A.getElement(2) << '\n';
 
     bMatrix<int> B(3,3);
 
@@ -29,23 +26,28 @@ int main()
 
     bMatrix<int> C{3-B};
 
-    std::cout << C.getElement(2) << '\n';
-    
     bMatrix<int> D(A*B);
 
-    std::cout << D.getElement(2) << '\n';
 
     bMatrix<int> A2(A);
     
-    std::cout << A2.getElement(2) << '\n';
-
-    std::cout << "//////////\n";
-
+    
     bMatrix<int> F(2,2);
 
     F.setElement(0,1, 1);
 
     std::cout << F.getElement(1) << '\n';
+
+    B.setElement(1,1,6);
+    B.setElement(5,7);
+
+    A.print();
+
+    B.print();
+
+    (A*B).print();
+
+    
 
     return 0;
 }

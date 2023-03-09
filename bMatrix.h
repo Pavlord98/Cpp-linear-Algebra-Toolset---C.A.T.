@@ -67,6 +67,8 @@ class bMatrix
     //template <class U> friend bMatrix<U> operator[] (const bMatrix<U>& A);
     // operator <<
     // maybe operator >>
+    void print();
+    
 
  private:
     int sub2Ind(int row, int col);
@@ -300,24 +302,24 @@ bMatrix<T> operator * (const bMatrix<T>& A, const bMatrix<T>& B)
     T * tempResult = new T[A.m_nRows * B.m_nCols];
 
     // loop through rows A
-    for (int Arow=0; Arow < A.m_nRows; Arow++)
+    for (int i=0; i < A.m_nRows; i++)
     {
         // loop through columns of B
-        for (int Bcol=0; Bcol < B.m_nCols; Bcol++)
+        for (int j=0; j < B.m_nCols; j++)
         {
             T elementResult = 0.0;
             //loop through each element of this A row
-            for (int Acol=0; Acol<A.m_nCols; Acol++)
+            for (int k=0; k<A.m_nCols; k++)
             {
-                int Aindex = (Arow * A.m_nCols) + Acol;
+                int Aindex = k*A.m_nRows + i;
 
-                int Bindex = (Acol * B.m_nCols) + Bcol;
+                int Bindex = j*B.m_nRows + k;
 
                 elementResult += (A.m_matrixData[Aindex] * B.m_matrixData[Bindex]); 
             }
 
             // Store the result
-            int resultIdex = (Arow * B.m_nCols) + Bcol;
+            int resultIdex = (A.m_nRows * j) + i;
             tempResult[resultIdex] = elementResult;
 
         }    
@@ -331,7 +333,21 @@ template <class T>
 int bMatrix<T>::sub2Ind(int row, int col)
 {
     // add some assertions
-    return (row * m_nCols) + col;
+    return (col * m_nRows) + row;
+}
+
+template <class T>
+void bMatrix<T>::print()
+{
+    std::cout<< "=\n";
+    for (int i=0; i<m_nRows; i++)
+    {
+        for (int j=0; j<m_nCols; j++)
+        {
+            std::cout << m_matrixData[j*m_nRows+i] << "    ";
+        }
+        std::cout << '\n';
+    }   
 }
 
 
