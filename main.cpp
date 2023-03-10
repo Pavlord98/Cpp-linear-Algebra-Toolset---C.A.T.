@@ -24,9 +24,9 @@ int main()
 
     B.setElement(0,4);
 
-    bMatrix<int> C{3-B};
+    //bMatrix<int> C{3-B};
 
-    bMatrix<int> D(A*B);
+    //bMatrix<int> D(A*B);
 
 
     bMatrix<int> A2(A);
@@ -45,11 +45,13 @@ int main()
 
     B.print();
 
-    (A*B).print();
+    //(A*B).print();
 
-    std::cout << B;
+    std::cout << "B" << B;
 
-    
+    std::cout << "5*B" << B*5;
+
+    std::cout << B.getType()<< '\n';
 
     return 0;
 }

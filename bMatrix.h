@@ -23,18 +23,12 @@ class bMatrix
     int getNumRows();
     int getNumCols();
 
-    /*
-    struct shape
-    {
-        int nRows;
-        int nCols;
-    }
-    shape Shape();
+    
 
     std::string getType();
 
     void describe(); 
-    */
+    
 
     // Setters
     void setElement(int row, int col, T value);
@@ -60,7 +54,7 @@ class bMatrix
     // operator *
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const bMatrix<U>& B);
     template <class U> friend bMatrix<U> operator* (const U& a, const bMatrix<U>& A);
-    //template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const U& a);
+    template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const U& a);
     
     // operator []
      
@@ -339,18 +333,36 @@ bMatrix<T> operator * (const bMatrix<T>& A, const bMatrix<T>& B)
     return result;
 }
 
+// sclar * matrix
 template <class T>
 bMatrix<T> operator* (const T& a, const bMatrix<T>& A)
 {
     //assertions
 
-    T * tempresult = new T[A.m_nCols*A.m_nRows];
+    T * tempResult = new T[A.m_nCols*A.m_nRows];
 
     for (int i=0; i<A.m_nCols*A.m_nRows; i++)
     {
-        T[i] = A.m_matrixData[i] * a; 
+        tempResult[i] = A.m_matrixData[i] * a; 
     }
-    bMatrix<T> result(A.m_nRows, B.m_nCols, tempResult);
+    bMatrix<T> result(A.m_nRows, A.m_nCols, tempResult);
+    delete tempResult;
+    return result;
+}
+
+// matrix * scalar
+template <class T>
+bMatrix<T> operator* (const bMatrix<T>& A, const T& a)
+{
+    //assertions
+
+    T * tempResult = new T[A.m_nCols*A.m_nRows];
+
+    for (int i=0; i<A.m_nCols*A.m_nRows; i++)
+    {
+        tempResult[i] = A.m_matrixData[i] * a; 
+    }
+    bMatrix<T> result(A.m_nRows, A.m_nCols, tempResult);
     delete tempResult;
     return result;
 }
@@ -374,6 +386,13 @@ void bMatrix<T>::print()
         }
         std::cout << '\n';
     }   
+}
+
+// get type of matrix
+template <class T>
+std::string bMatrix<T>::getType()
+{
+    return typeid(m_matrixData[0]).name();   
 }
 
 template <class T>
