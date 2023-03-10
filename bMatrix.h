@@ -3,6 +3,7 @@
 
 #include <string>
 #include <typeinfo>
+#include <iostream>
 
 template <class T>
 class bMatrix
@@ -32,17 +33,17 @@ class bMatrix
 
     std::string getType();
 
-    void describe();  
+    void describe(); 
     */
 
     // Setters
     void setElement(int row, int col, T value);
     void setElement(int index, T value);
 
+
     //////////////////////////
     // operator overloads
-    
-    
+        
     // operator +
     template <class U> friend bMatrix<U> operator+ (const bMatrix<U>& A, const bMatrix<U>& B);
     template <class U> friend bMatrix<U> operator+ (const U& a, const bMatrix<U>& A);
@@ -58,17 +59,26 @@ class bMatrix
 
     // operator *
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const bMatrix<U>& B);
-    //template <class U> friend bMatrix<U> operator* (const U& a, const bMatrix<U>& A);
+    template <class U> friend bMatrix<U> operator* (const U& a, const bMatrix<U>& A);
     //template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const U& a);
     
+    // operator []
+     
+    // operator <<
+    template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
+    
+    // maybe operator >>
+
     ///////////////////////////
 
-    // operator []
-    //template <class U> friend bMatrix<U> operator[] (const bMatrix<U>& A);
-    // operator <<
-    // maybe operator >>
     void print();
-    
+
+    ///////////////////////
+    // indexing and slicing
+    ///////////////////////
+
+    // elementwise multiplication 
+     
 
  private:
     int sub2Ind(int row, int col);
@@ -325,9 +335,25 @@ bMatrix<T> operator * (const bMatrix<T>& A, const bMatrix<T>& B)
         }    
     }
     bMatrix<T> result(A.m_nRows, B.m_nCols, tempResult);
+    delete tempResult;
     return result;
 }
 
+template <class T>
+bMatrix<T> operator* (const T& a, const bMatrix<T>& A)
+{
+    //assertions
+
+    T * tempresult = new T[A.m_nCols*A.m_nRows];
+
+    for (int i=0; i<A.m_nCols*A.m_nRows; i++)
+    {
+        T[i] = A.m_matrixData[i] * a; 
+    }
+    bMatrix<T> result(A.m_nRows, B.m_nCols, tempResult);
+    delete tempResult;
+    return result;
+}
 
 template <class T>
 int bMatrix<T>::sub2Ind(int row, int col)
@@ -348,6 +374,21 @@ void bMatrix<T>::print()
         }
         std::cout << '\n';
     }   
+}
+
+template <class T>
+std::ostream& operator<< (std::ostream& out, const bMatrix<T> A)
+{
+    out << "=\n";
+    for (int i=0; i<A.m_nRows; i++)
+    {
+        for (int j=0; j<A.m_nCols; j++)
+        {
+            out << A.m_matrixData[j*A.m_nRows+i] << "    ";
+        }
+        out << '\n';
+    }
+    return out;
 }
 
 

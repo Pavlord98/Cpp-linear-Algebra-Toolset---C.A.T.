@@ -47,6 +47,8 @@ int main()
 
     (A*B).print();
 
+    std::cout << B;
+
     
 
     return 0;
