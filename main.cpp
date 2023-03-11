@@ -32,26 +32,21 @@ int main()
     bMatrix<int> A2(A);
     
     
-    bMatrix<int> F(2,2);
+   
 
-    F.setElement(0,1, 1);
-
-    std::cout << F.getElement(1) << '\n';
+    
 
     B.setElement(1,1,6);
     B.setElement(5,7);
 
-    A.print();
-
-    B.print();
 
     //(A*B).print();
 
-    std::cout << "B" << B;
+    
 
-    std::cout << "5*B" << B*5;
+    bMatrix<double> F(3,3,"bla");
 
-    std::cout << B.getType()<< '\n';
+    std::cout << F + 3.0;
 
     return 0;
 }

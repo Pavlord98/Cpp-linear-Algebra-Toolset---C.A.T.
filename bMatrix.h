@@ -5,25 +5,37 @@
 #include <typeinfo>
 #include <iostream>
 
+#include <math.h>
+#include <vector>
+
 template <class T>
 class bMatrix
 {
  public:
+    //******Constructors*************
     bMatrix();
     bMatrix(int nRows, int nCols);
     bMatrix(int nRows, int nCols, const T *inputData);
     bMatrix(const bMatrix<T>& inputData);
+    bMatrix(int nRows, int nCols, const std::vector<T> *inputData);
+
+    bMatrix(int nRows, int nCols, std::string type);
     
     ~bMatrix();
 
-    // Getters
+    //******Element access*************
+    
+    // getters
     T getElement(int row, int col);
     T getElement(int index);
     
     int getNumRows();
     int getNumCols();
 
-    
+    void print();
+
+    // operator <<
+    template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
 
     std::string getType();
 
@@ -34,10 +46,11 @@ class bMatrix
     void setElement(int row, int col, T value);
     void setElement(int index, T value);
 
+    //******Operators/Basic operations*************
 
-    //////////////////////////
-    // operator overloads
-        
+    // operator =
+    //template <class U> friend bMatrix<U> operator= (const bMatrix<U>& A, const bMatrix<U>& B);
+
     // operator +
     template <class U> friend bMatrix<U> operator+ (const bMatrix<U>& A, const bMatrix<U>& B);
     template <class U> friend bMatrix<U> operator+ (const U& a, const bMatrix<U>& A);
@@ -56,22 +69,20 @@ class bMatrix
     template <class U> friend bMatrix<U> operator* (const U& a, const bMatrix<U>& A);
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const U& a);
     
-    // operator []
+    // elementwise multiplication
      
-    // operator <<
-    template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
+    // transpose
+    
+    // inverse
     
     // maybe operator >>
 
-    ///////////////////////////
+    //******Indexing and slicing*************    
 
-    void print();
+    // operator []
+     
 
-    ///////////////////////
-    // indexing and slicing
-    ///////////////////////
-
-    // elementwise multiplication 
+    
      
 
  private:
@@ -82,6 +93,8 @@ class bMatrix
 
 };
 
+//***************************************************************************************
+//***************************************************************************************
 //////////////////////////////////////////////
 // Constructors and destructors
 
@@ -121,6 +134,16 @@ bMatrix<T>::bMatrix(int nRows, int nCols, const T *inputData)
         m_matrixData[i] = inputData[i];
 }
 
+template <class T>
+bMatrix<T>::bMatrix(int nRows, int nCols, const std::vector<T> *inputData)
+{
+    m_nRows = nRows;
+    m_nCols = nCols;
+    m_nElements = m_nRows * m_nCols;
+    m_matrixData = new T[m_nElements];
+    for (int i=0; i<m_nElements; i++)
+        m_matrixData[i] = inputData->at(i);    
+}
 
 // copy constructor
 template <class T>
@@ -134,14 +157,29 @@ bMatrix<T>::bMatrix(const bMatrix<T>& inputData)
         m_matrixData[i] = inputData.m_matrixData[i];
 }
 
+// special constructor
+template <class T>
+bMatrix<T>::bMatrix(int nRows, int nCols, std::string type)
+{
+    // add a check for size here
+    m_nRows =nRows;
+    m_nCols =nCols;
+    m_nElements =m_nRows*m_nCols;
+    m_matrixData = new T[m_nElements];
+    for (int i =0; i<m_nElements; i++)
+        m_matrixData[i] = static_cast<T>(1.0);        
+}
 
-
+// desctructor
 template <class T>
 bMatrix<T>::~bMatrix()
 {
     if (m_matrixData != nullptr)
         delete[] m_matrixData;
 }
+
+//***************************************************************************************
+//***************************************************************************************
 
 //////////////////////////////////////////////
 // Geters
@@ -409,6 +447,8 @@ std::ostream& operator<< (std::ostream& out, const bMatrix<T> A)
     }
     return out;
 }
+
+
 
 
 
