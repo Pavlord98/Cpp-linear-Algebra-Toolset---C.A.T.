@@ -1,6 +1,14 @@
 //////////////////////////////////////////////
 // Constructors and destructors
 
+// desctructor
+template <class T>
+bMatrix<T>::~bMatrix()
+{
+    if (m_matrixData != nullptr)
+        delete[] m_matrixData;
+}
+
 // default constructor
 template <class T>
 bMatrix<T>::bMatrix()
@@ -60,23 +68,51 @@ bMatrix<T>::bMatrix(const bMatrix<T>& inputData)
         m_matrixData[i] = inputData.m_matrixData[i];
 }
 
+//  enum for special initialization
+enum init_code
+{
+    zeros,
+    ones,
+    eye,
+    error,
+};
+
+// hash string to enum
+init_code hashit (std::string const& inputString)
+{
+    if (inputString == "zeros") return zeros;
+    if (inputString == "ones" ) return ones;
+    if (inputString == "eye")   return eye;
+    else return error; 
+}
+
 // special constructor
 template <class T>
-bMatrix<T>::bMatrix(int nRows, int nCols, std::string type)
+bMatrix<T>::bMatrix(int nRows, int nCols, std::string init_code)
 {
     // add a check for size here
     m_nRows =nRows;
     m_nCols =nCols;
     m_nElements =m_nRows*m_nCols;
     m_matrixData = new T[m_nElements];
-    for (int i =0; i<m_nElements; i++)
-        m_matrixData[i] = static_cast<T>(1.0);        
+    
+    switch (hashit(init_code))
+    {
+    case zeros:
+        for (int i =0; i<m_nElements; i++)
+        m_matrixData[i] = static_cast<T>(0.0);
+        break;
+    case ones :
+        for (int i =0; i<m_nElements; i++)
+        m_matrixData[i] = static_cast<T>(1.0);
+        break;
+    case eye:
+    for (int i =0; i<m_nElements; i+= nRows + 1)
+        m_matrixData[i] = static_cast<T>(1.0);
+        break;
+    default:
+        break;
+    }
+           
 }
 
-// desctructor
-template <class T>
-bMatrix<T>::~bMatrix()
-{
-    if (m_matrixData != nullptr)
-        delete[] m_matrixData;
-}
