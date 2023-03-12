@@ -24,21 +24,6 @@ class bMatrix
     ~bMatrix();
 
 
-    //******Element access*************
- protected:
-    int sub2Ind(int row, int col);
-
- public:
-    // getters
-    T getElement(int row, int col);
-    T getElement(int index);
-
-    // Setters
-    void setElement(int row, int col, T value);
-    void setElement(int index, T value);
-
-    // maybe operator >>
-
     //******Matrix operations*************
     // operator =
     //template <class U> friend bMatrix<U> operator= (const bMatrix<U>& A, const bMatrix<U>& B);
@@ -68,8 +53,35 @@ class bMatrix
     // inverse
 
     //******Indexing (and slicing)*************    
-    // operator []
+    //******Element access*************
+ protected:
+    int sub2Ind(int row, int col);
 
+ public:
+    
+    // Setters
+    void setElement(int row, int col, T value);
+    void setElement(int index, T value);
+
+    // maybe operator >>
+
+    // getters
+    T getElement(int row, int col);
+    T getElement(int index);
+    
+    // operator ()
+    T operator() (int index);
+    T operator() (int row, int col);
+
+    // seq
+
+    // head
+
+    // tail
+
+    // getRow
+
+    // getCol
 
     //***********Describing**************** 
     std::string getType();
