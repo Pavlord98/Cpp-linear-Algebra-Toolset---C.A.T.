@@ -20,3 +20,4 @@ This is a project of mine in which I am developing my own linear algebra library
 * Special methods for sparse matrices
 * Recreated solvers used in OpenFOAM
 * QR decomposition
+* Doxygen documentation
