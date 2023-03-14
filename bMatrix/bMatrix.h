@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <iostream>
 
+#include <stdexcept>
 #include <math.h>
 #include <vector>
 
@@ -52,10 +53,17 @@ class bMatrix
     
     // inverse
 
+
     //******Indexing (and slicing)*************    
     //******Element access*************
  protected:
     int sub2Ind(int row, int col);
+    bool isSquare();
+    bool closeEnough();
+    void swapRow(int i, int j);
+    void MultAdd(int i, int j, T multFactor);
+    bool Join(const bMatrix<T>& mat);
+    int findRowWithMaxElement( int colNumber, int startingRow);
 
  public:
     
@@ -111,8 +119,6 @@ class bMatrix
 #include "elementAccess.inl"
 
 #include "matrixOperations.inl"
-
-#include "indexing.inl"
 
 #include "describing.inl"
 

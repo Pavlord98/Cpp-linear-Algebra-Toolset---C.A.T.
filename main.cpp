@@ -5,7 +5,7 @@ int main()
 {
     bMatrix<double> F(5,5,"eye");
 
-    std::cout << F(1, 1) << '\n';
+    std::cout << F << '\n';
 
     return 0;
 }
