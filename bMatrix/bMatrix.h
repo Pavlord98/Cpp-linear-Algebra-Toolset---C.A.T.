@@ -40,7 +40,9 @@ class bMatrix
     template <class U> friend bMatrix<U> operator- (const bMatrix<U>& A, const U& a);
 
     // operator ==
-    //template <class U> friend bMatrix<U> operator== (const bMatrix<U>& A);
+    bool operator== (const bMatrix<T>& B);
+    bool compare (const bMatrix<T>& B, double tolerance);
+    
 
     // operator *
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const bMatrix<U>& B);
@@ -56,14 +58,16 @@ class bMatrix
 
     //******Indexing (and slicing)*************    
     //******Element access*************
- protected:
+ 
     int sub2Ind(int row, int col);
+    void resize(int row, int col);
     bool isSquare();
-    bool closeEnough();
+    bool closeEnough(T f1, T f2);
     void swapRow(int i, int j);
-    void MultAdd(int i, int j, T multFactor);
-    bool Join(const bMatrix<T>& mat);
+    void multAdd(int i, int j, T multFactor);
+    void join(const bMatrix<T>& B);
     int findRowWithMaxElement( int colNumber, int startingRow);
+    void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
 
  public:
     
