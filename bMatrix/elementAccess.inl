@@ -64,3 +64,22 @@ int bMatrix<T>::findRowWithMaxElement(int colNumber, int startingRow)
     }
     return rowIndex;
 }
+
+template <class T>
+bMatrix<T> bMatrix<T>::findSubMatrix(int rowNum, int colNum)
+{
+      bMatrix<T> subMatrix(m_nRows-1, m_nCols-1);
+      int count = 0;
+      for (int j=0; j<m_nCols; j++)
+      {
+         for (int i=0; i<m_nRows; i++)
+         {
+            if ((i != rowNum) && (j != colNum))
+            {
+               subMatrix.m_matrixData[count] = this->getElement(i,j);
+               count++;
+            }
+         }
+      }
+      return subMatrix;
+}
