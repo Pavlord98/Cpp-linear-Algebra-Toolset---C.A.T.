@@ -10,6 +10,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Support for initilazing Identity, Ones and Zeros matrices of any size
 * Matrix inversion by the Gauss-Jordan method
 * Joining and splitting matrices
+* Calculate determinant
 
 ## Features currently in development
 
