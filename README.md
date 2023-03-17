@@ -9,6 +9,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Many methods for getting information regarding created matrices
 * Support for initilazing Identity, Ones and Zeros matrices of any size
 * Matrix inversion by the Gauss-Jordan method
+* Joining and splitting matrices
 
 ## Features currently in development
 
