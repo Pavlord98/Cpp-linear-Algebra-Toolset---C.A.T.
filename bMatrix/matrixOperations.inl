@@ -196,19 +196,29 @@ bool bMatrix<T>::compare(const bMatrix<T>& B, double tolerance)
 template <class T>
 bool bMatrix<T>::operator== (const bMatrix<T>& B)
 {
+    bool flag = true;
     // check the dimensions
     int numRows1 = B.m_nRows;
     int numCols1 = B.m_nCols;
     if ((numRows1 != m_nRows) || (numCols1 != m_nCols) )
-        return false;
+    {
+            flag = false;
+            return flag;
+    }    
 
     // check if the elements are equal
-    bool flag = true;
+    
     for (int i=0; i < this->m_nElements; i++)
     {
         if (!closeEnough(this->m_matrixData[i], B.m_matrixData[i]))
+        {
             flag = false;
+            return flag;
+        }    
+        
+        
     }
+    return flag;
 }
 
 
@@ -333,4 +343,112 @@ void bMatrix<T>::multRow(int i, T multFactor)
 {
     for (int k=0; k<m_nCols; k++)
         m_matrixData[sub2Ind(i,k)] *= multFactor;
+}
+
+template <class T>
+void bMatrix<T>::inverse()
+{
+
+    std::cout << "starting from: ";
+    this->print();
+    // form an indentity matrix with the same dimensions so we can begin
+    bMatrix<T> IdentiyMatrix(m_nRows, m_nCols, "eye");
+
+    // join the identity matrix to the existing matrix
+    int originalNumCols = m_nCols;
+    join(IdentiyMatrix);
+
+    // begin main part of the process
+    int cRow, cCol;
+    int maxCount = 100;
+    int count = 0;
+    bool completeFlag = false;
+    while((!completeFlag) && (count < maxCount))
+    {
+        for (int diagIndex = 0; diagIndex<m_nRows; diagIndex++)
+        {
+            cRow = diagIndex;
+            cCol = diagIndex;
+
+            // find the index of the maximum element in the current column
+            int maxIndex = findRowWithMaxElement(cCol, cRow);
+
+            //if this isn't the current row, then swap
+            if (maxIndex != cRow)
+            {
+                swapRow(cRow, maxIndex);
+            }
+
+            // make sure the value at (cRow, cCol) is equal to one
+            if (m_matrixData[sub2Ind(cRow,cCol)] != 1.0)
+            {
+                T multFactor = 1.0 / m_matrixData[sub2Ind(cRow,cCol)];
+                multRow(cRow, multFactor);
+            }
+
+            // consider the column
+            for (int rowIndex=cRow+1; rowIndex<m_nRows; rowIndex++)
+            {
+                if (!closeEnough(m_matrixData[sub2Ind(rowIndex,cCol)], 0.0))
+                {
+                    int rowOneIndex = cCol;
+
+                    T currentElementValue = m_matrixData[sub2Ind(rowIndex, cCol)];
+
+                    T rowOneValue = m_matrixData[sub2Ind(rowOneIndex, cCol)];
+
+                    if (!closeEnough(rowOneValue, 0.0))
+                    {
+                        T correctionFactor = - (currentElementValue / rowOneValue);
+
+                        multAdd(rowIndex, rowOneIndex, correctionFactor);
+                    }
+                }
+            }
+
+            // consider the row
+            for (int colIndex = cCol+1; colIndex<originalNumCols; colIndex++)
+            {
+                if (!closeEnough(m_matrixData[sub2Ind(cRow, colIndex)], 0.0))
+                {
+                    int rowOneIndex = colIndex;
+
+                    T currentElementValue = m_matrixData[sub2Ind(cRow, colIndex)];
+                    T rowOneValue = m_matrixData[sub2Ind(rowOneIndex, colIndex)];
+
+                    if (!closeEnough(rowOneValue, 0.0))
+                    {
+                        T correctionFactor = -(currentElementValue / rowOneValue);
+
+                        multAdd(cRow, rowOneIndex,correctionFactor);
+                    }
+                }
+            }
+
+            
+        }
+        // seperate the result into left and right halves 
+            std::cout << "seperating\n";
+            bMatrix<T> leftHalf;
+            bMatrix<T> rightHalf;
+            this->seperate(&leftHalf, &rightHalf, originalNumCols);
+
+            std::cout<< leftHalf;
+
+            if (leftHalf == IdentiyMatrix)
+            {
+                std::cout << "completed\n";
+                completeFlag = true;
+
+                m_nCols = originalNumCols;
+                m_nElements = m_nRows * m_nCols;
+                delete[] m_matrixData;
+                m_matrixData = new T[m_nElements];
+                for (int i=0;i<m_nElements; i++)
+                    m_matrixData[i] = rightHalf.m_matrixData[i];
+            }
+
+            count++;
+    }
+    
 }

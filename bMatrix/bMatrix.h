@@ -62,6 +62,8 @@ class bMatrix
     void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
     void multRow(int i, T multFactor);
 
+    void inverse();
+
     //******Indexing (and slicing)*************    
     //******Element access*************
  

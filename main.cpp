@@ -3,25 +3,26 @@
 
 int main()
 {
-    bMatrix<double> F(5,5,"eye");
+    
+    bMatrix<double> A(3,3);
+    
+    A.setElement(0,2.0);
+    A.setElement(1,1.0);
+    A.setElement(2,0.0);
+    A.setElement(3,1.0);
+    A.setElement(4,0.0);
+    A.setElement(5,3.0);
+    A.setElement(6,1.0);
+    A.setElement(7,1.0);
+    A.setElement(8,1.0);
 
-    std::cout << F << '\n';
+    //std::cout << A; // this somehow messes up the inversion
+    A.print();
 
-    bMatrix<double> F2(5,5,"eye");
 
-    //std::cout << F.compare(F2-1.0, 0.1) << '\n';
+    A.inverse();
 
-    bMatrix<double> F3(5,5,"eye");
-
-    bMatrix<double>* f3{&F3};
-
-    bMatrix<double>* f2{&F2};
-
-    //std::cout << F==F2;
-
-    F2.multAdd(1,2,5.0);
-
-    std::cout << F2;
+    std::cout << A;
 
     
 
