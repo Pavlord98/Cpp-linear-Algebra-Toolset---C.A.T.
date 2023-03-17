@@ -211,11 +211,7 @@ bool bMatrix<T>::operator== (const bMatrix<T>& B)
     }
 }
 
-template <class T>
-bool bMatrix<T>::closeEnough(T f1, T f2)
-{
-    return fabs(f1-f2) < 1e-9;
-}
+
 
 template <class T>
 void bMatrix<T>::resize(int row, int col)
@@ -330,4 +326,11 @@ void bMatrix<T>::multAdd(int i, int j, T multFactor)
 {
     for (int k=0; k<m_nCols; k++)
         m_matrixData[k*m_nRows + i] += m_matrixData[k*m_nRows + j]*multFactor;
+}
+
+template <class T>
+void bMatrix<T>::multRow(int i, T multFactor)
+{
+    for (int k=0; k<m_nCols; k++)
+        m_matrixData[sub2Ind(i,k)] *= multFactor;
 }

@@ -48,3 +48,19 @@ T bMatrix<T>::operator() (int row, int col)
 {
     return m_matrixData[sub2Ind(row, col)];    
 }
+
+template <class T>
+int bMatrix<T>::findRowWithMaxElement(int colNumber, int startingRow)
+{
+    T tempValue = m_matrixData[sub2Ind(startingRow, colNumber)];
+    int rowIndex = startingRow;
+    for (int k=startingRow; k<m_nRows; k++)
+    {
+        if (fabs(m_matrixData[sub2Ind(k, colNumber)]) > fabs(tempValue))
+        {
+            rowIndex = k;
+            tempValue = m_matrixData[sub2Ind(k, colNumber)];
+        }
+    }
+    return rowIndex;
+}

@@ -45,3 +45,9 @@ int bMatrix<T>::getNumCols()
 {
     return m_nCols;
 }
+
+template <class T>
+bool bMatrix<T>::closeEnough(T f1, T f2)
+{
+    return fabs(f1-f2) < 1e-9;
+}

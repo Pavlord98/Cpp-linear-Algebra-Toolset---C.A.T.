@@ -55,22 +55,20 @@ class bMatrix
     
     // inverse
 
+    void multAdd(int i, int j, T multFactor);  
+    void resize(int row, int col);
+    void join(const bMatrix<T>& B);
+    void swapRow(int i, int j);
+    void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
+    void multRow(int i, T multFactor);
 
     //******Indexing (and slicing)*************    
     //******Element access*************
  
     int sub2Ind(int row, int col);
-    void resize(int row, int col);
-    bool isSquare();
-    bool closeEnough(T f1, T f2);
-    void swapRow(int i, int j);
-    void multAdd(int i, int j, T multFactor);
-    void join(const bMatrix<T>& B);
-    int findRowWithMaxElement( int colNumber, int startingRow);
-    void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
 
- public:
-    
+    int findRowWithMaxElement( int colNumber, int startingRow);
+   
     // Setters
     void setElement(int row, int col, T value);
     void setElement(int index, T value);
@@ -104,6 +102,9 @@ class bMatrix
     int getNumCols();
 
     void print();
+    bool isSquare();
+
+    bool closeEnough(T f1, T f2);
 
     // operator <<
     template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
@@ -111,8 +112,6 @@ class bMatrix
     // isSparse()
 
  private:
-    
-
     T *m_matrixData;
     int m_nRows, m_nCols, m_nElements;
 
