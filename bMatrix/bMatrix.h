@@ -53,18 +53,19 @@ class bMatrix
      
     // transpose
     
-    // inverse
-
     void multAdd(int i, int j, T multFactor);  
     void resize(int row, int col);
     void join(const bMatrix<T>& B);
     void swapRow(int i, int j);
     void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
     void multRow(int i, T multFactor);
-
+   
+    // inverse
     void inverse();
 
-    //******Indexing (and slicing)*************    
+    // determinate
+    T det();
+       
     //******Element access*************
  
     int sub2Ind(int row, int col);
@@ -84,6 +85,8 @@ class bMatrix
     // operator ()
     T operator() (int index);
     T operator() (int row, int col);
+
+    bMatrix<T> findSubMatrix(int rowNum, int colNum);
 
     // seq
 
