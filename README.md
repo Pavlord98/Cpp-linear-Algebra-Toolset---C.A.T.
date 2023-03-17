@@ -8,10 +8,10 @@ This is a project of mine in which I am developing my own linear algebra library
 * Support for the basic matrix operations via overloaded operators " (), +, -, *, = "
 * Many methods for getting information regarding created matrices
 * Support for initilazing Identity, Ones and Zeros matrices of any size
+* Matrix inversion by the Gauss-Jordan method
 
 ## Features currently in development
 
-* Matrix division by the Gauss-Jordan method
 * Advanced indexing and slicing of matrices
 
 ## Upcoming feutures
@@ -21,3 +21,6 @@ This is a project of mine in which I am developing my own linear algebra library
 * Recreated solvers used in OpenFOAM
 * QR decomposition
 * Doxygen documentation
+
+## Known buggs
+* << overload does something weird, print() method works fine
