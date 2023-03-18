@@ -15,12 +15,6 @@ class Tensor
  public:
     //******Constructors*************
     Tensor();
-    Tensor(int nRows, int nCols);
-    Tensor(int nRows, int nCols, const T *inputData);
-    Tensor(const bMatrix<T>& inputData);
-    Tensor(int nRows, int nCols, const std::vector<T> *inputData);
-
-    Tensor(int nRows, int nCols, std::string type);
     
     ~Tensor();
 
@@ -119,7 +113,6 @@ class Tensor
  private:
     T *m_Data;
     int  m_nElements;
-    int m_nRows, m_nCols; //mat
 
 };
 
