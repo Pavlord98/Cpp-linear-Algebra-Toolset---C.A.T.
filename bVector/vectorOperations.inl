@@ -63,4 +63,5 @@ bVector<T> bVector<T>::cross(const bVector<T> &a, const bVector<T> &b)
 
     bVector<T> result(resultData);
     return result;
+    
 }

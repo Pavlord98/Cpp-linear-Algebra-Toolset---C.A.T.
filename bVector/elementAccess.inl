@@ -8,6 +8,7 @@ T bVector<T>::getElement(int index) const
 }
 
 
+
 template <class T>
 void bVector<T>::setElement(int index, T value)
 {

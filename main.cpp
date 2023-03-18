@@ -17,7 +17,7 @@ int main()
 
     std::cout<<a.getElement(3)<<'\n';
 
-    std::cout << bVector<double>::dot(a,b) <<'\n';
+    std::cout << bVector<double>::dot(a,b) <<'\n'; 
 
     return 0;
 }
