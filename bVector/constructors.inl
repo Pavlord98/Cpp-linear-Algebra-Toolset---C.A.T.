@@ -10,7 +10,7 @@ bVector<T>::~bVector()
 template <class T>
 bVector<T>::bVector()
 {
-    m_length = 1;
+    m_length = 0;
     m_vectorData = std::vector<T>();
 }
 

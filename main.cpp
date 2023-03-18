@@ -4,28 +4,20 @@
 
 int main()
 {
-    
-    bMatrix<double> A(3,3);
-    
-    A.setElement(0,8.0);
-    A.setElement(1,3.0);
-    A.setElement(2,4.0);
-    A.setElement(3,1.0);
-    A.setElement(4,5.0);
-    A.setElement(5,9.0);
-    A.setElement(6,6.0);
-    A.setElement(7,7.0);
-    A.setElement(8,2.0);
 
-    //std::cout << A; // this somehow messes up the inversion
-    A.print();
+    std::vector<double> vec(3);
 
+    bVector<double> a(vec);
 
-    bMatrix<double> B(A.findSubMatrix(1,1));
+    bVector<double> b(vec);
 
-    std::cout << A.det();
+    a.setElement(0,10.1);
 
-    bVector<double> a();
+    b.setElement(0,9.1);
+
+    std::cout<<a.getElement(3)<<'\n';
+
+    std::cout << bVector<double>::dot(a,b) <<'\n';
 
     return 0;
 }

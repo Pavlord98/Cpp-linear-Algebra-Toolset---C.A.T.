@@ -26,7 +26,9 @@ class bVector
     
     //******Element access*************
 
-    T getElement(int index);
+    T getElement(int index) const;
+
+    void setElement(int index, T value);
 
     // overlaad () and add advanced slicing and indexing
 
@@ -36,11 +38,11 @@ class bVector
 
     bVector<T> operator+ (const bVector<T> &b) const;
     bVector<T> operator- (const bVector<T> &b) const;
-    bVector<T> operator* (const bVector<T> &b) const;
+    bVector<T> operator* (const T &scalar) const;
 
     template <class U> friend bVector<U> operator* (const U &scalar, const bVector<U> &vector);
 
-    static T dot(const bVector<T> &a, const bVector<T> &b);
+    static T dot(bVector<T> &a, bVector<T> &b);
     static bVector<T> cross(const bVector<T> &a, const bVector<T> &b);
 
  private:
@@ -51,7 +53,8 @@ class bVector
 
 #include "constructors.inl"
 #include "describing.inl"
-
+#include "elementAccess.inl"
+#include "vectorOperations.inl"
 
 
 
