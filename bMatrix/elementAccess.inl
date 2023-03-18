@@ -1,21 +1,21 @@
 // Geters
 
 template <class T>
-int bMatrix<T>::sub2Ind(int row, int col)
+int bMatrix<T>::sub2Ind(int row, int col) const
 {
     // add some assertions
     return (col * m_nRows) + row;
 }
 
 template <class T>
-T bMatrix<T>::getElement(int index)
+T bMatrix<T>::getElement(int index) const
 {
     // assert da index nije negativan
     return m_matrixData[index];
 }
 
 template <class T>
-T bMatrix<T>::getElement(int row, int col)
+T bMatrix<T>::getElement(int row, int col) const
 {
     // assert da index nije negativan
     return m_matrixData[sub2Ind(row, col)];

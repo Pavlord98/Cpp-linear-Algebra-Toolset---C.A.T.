@@ -15,9 +15,13 @@ int main()
 
     b.setElement(0,9.1);
 
-    std::cout<<a.getElement(3)<<'\n';
+    //std::cout<<a.getElement(3)<<'\n';
 
-    std::cout << bVector<double>::dot(a,b) <<'\n'; 
+    a.print(); 
+
+    bMatrix<double> A(3,3,"ones");
+
+    bVector<double> rez = A*a;
 
     return 0;
 }

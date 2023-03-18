@@ -63,5 +63,31 @@ bVector<T> bVector<T>::cross(const bVector<T> &a, const bVector<T> &b)
 
     bVector<T> result(resultData);
     return result;
-    
+
+}
+
+template <class T>
+T bVector<T>::norm()
+{
+    T cumSum = static_cast<T>(0.0);
+    for (int i=0; i<m_length; i++)
+        cumSum += (m_vectorData[i] * m_vectorData[i]);
+
+    return sqrt(cumSum);
+}
+
+template <class T>
+bVector<T> bVector<T>::normalized()
+{
+    T vecNorm = this->norm();
+    bVector<T> result(m_vectorData);
+    return result * (static_cast<T>(1.0) / vecNorm);
+}
+
+template <class T>
+void bVector<T>::normalize()
+{
+    T vecNorm = this->norm();
+    for(int i=0; i<m_length; i++)
+        m_vectorData[i] *= (static_cast<T>(1.0) / vecNorm);
 }

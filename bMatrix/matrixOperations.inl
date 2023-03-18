@@ -477,3 +477,20 @@ T bMatrix<T>::det()
     }
     return determinant;
 }
+
+template <class T>
+bVector<T> operator* (const bMatrix<T>& A, const bVector<T>& b)
+{
+    bVector<T> result = b;
+
+    for (int row=0; row<A.m_nRows; row++)
+    {
+        T cumSum = static_cast<T>(0.0);
+        for (int col=0; col<A.m_nCols; col++)
+        {
+            cumSum += A.getElement(row,col) * b.getElement(col);
+        }
+        result.setElement(row, cumSum);
+    }
+    return result;
+}

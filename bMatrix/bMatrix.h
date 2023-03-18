@@ -9,6 +9,8 @@
 #include <math.h>
 #include <vector>
 
+#include "bVector.h"
+
 template <class T>
 class bMatrix
 {
@@ -49,6 +51,9 @@ class bMatrix
     template <class U> friend bMatrix<U> operator* (const U& a, const bMatrix<U>& A);
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const U& a);
     
+    // matrix * vector
+    template <class U> friend bVector<U> operator* (const bMatrix<U>& A, const bVector<U>& b);
+
     // elementwise multiplication
      
     // transpose
@@ -68,7 +73,7 @@ class bMatrix
        
     //******Element access*************
  
-    int sub2Ind(int row, int col);
+    int sub2Ind(int row, int col) const;
 
     int findRowWithMaxElement( int colNumber, int startingRow);
    
@@ -79,8 +84,8 @@ class bMatrix
     // maybe operator >>
 
     // getters
-    T getElement(int row, int col);
-    T getElement(int index);
+    T getElement(int row, int col) const;
+    T getElement(int index) const;
     
     // operator ()
     T operator() (int index);

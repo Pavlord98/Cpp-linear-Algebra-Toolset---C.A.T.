@@ -23,6 +23,8 @@ class bVector
 
     int length();
 
+    void print();
+
     
     //******Element access*************
 
@@ -41,6 +43,10 @@ class bVector
     bVector<T> operator* (const T &scalar) const;
 
     template <class U> friend bVector<U> operator* (const U &scalar, const bVector<U> &vector);
+
+    T norm();
+    bVector<T> normalized();
+    void normalize();
 
     static T dot(bVector<T> &a, bVector<T> &b);
     static bVector<T> cross(const bVector<T> &a, const bVector<T> &b);
