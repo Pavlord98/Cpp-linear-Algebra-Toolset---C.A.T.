@@ -1,5 +1,6 @@
 #include <iostream>
 #include "bMatrix.h"
+#include "bVector.h"
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
 
     std::cout << A.det();
 
-    
+    bVector<double> a();
 
     return 0;
 }
