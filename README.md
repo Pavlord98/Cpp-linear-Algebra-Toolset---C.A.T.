@@ -11,16 +11,17 @@ This is a project of mine in which I am developing my own linear algebra library
 * Matrix inversion by the Gauss-Jordan method
 * Joining and splitting matrices
 * Calculate determinant
+* Solving linear systems with the Gauss Elimination method
 
 ## Features currently in development
 
 * Advanced indexing and slicing of matrices
+* Gauss Seidel method for solving linear systems
 
 ## Upcoming feutures
 
-* Methods for solving linear systems 
 * Special methods for sparse matrices
-* Recreated solvers used in OpenFOAM
+* Conjugate and MultiGrid solvers
 * QR decomposition
 * Doxygen documentation
 
