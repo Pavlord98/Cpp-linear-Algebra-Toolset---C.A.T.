@@ -502,6 +502,9 @@ bMatrix<T> bMatrix<T>::rowEchelon()
     int maxCount = 100;
     int count = 0;
     bool completeFlag = false;
+
+    bMatrix<T> A(m_nRows,m_nCols, m_matrixData);
+
     while ((!completeFlag) && (count < maxCount))
     {
         for (int diagIndex=0; diagIndex < m_nRows; diagIndex++)
@@ -511,17 +514,17 @@ bMatrix<T> bMatrix<T>::rowEchelon()
 
             for (int rowIndex = cRow+1; rowIndex<m_nRows; rowIndex++)
             {
-                if (!closeEnough(m_matrixData[sub2Ind(rowIndex, cCol)], 0.0))
+                if (!closeEnough(A.m_matrixData[sub2Ind(rowIndex, cCol)], 0.0))
                 {
                     int rowOneIndex = cCol;
 
-                    T currentElementValue = m_matrixData[sub2Ind(rowIndex, cCol)];
-                    T rowOneValue = m_matrixData[sub2Ind(rowOneIndex, cCol)];   
+                    T currentElementValue = A.m_matrixData[sub2Ind(rowIndex, cCol)];
+                    T rowOneValue = A.m_matrixData[sub2Ind(rowOneIndex, cCol)];   
 
                     if(!closeEnough(rowOneValue, 0.0))
                     {
                         T correctionFactor = -(currentElementValue/rowOneValue);
-                        multAdd(rowIndex, rowOneIndex, correctionFactor);
+                        A.multAdd(rowIndex, rowOneIndex, correctionFactor);
                     } 
                 }
             }
@@ -529,6 +532,6 @@ bMatrix<T> bMatrix<T>::rowEchelon()
         completeFlag = this->isRowEchelon();  
         count++;
     }  
-    bMatrix<T> outputMatrix(m_nRows, m_nCols, m_matrixData);
+    bMatrix<T> outputMatrix(m_nRows, m_nCols, A.m_matrixData);
     return outputMatrix;
 }
