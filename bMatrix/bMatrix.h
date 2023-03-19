@@ -70,6 +70,9 @@ class bMatrix
 
     // determinate
     T det();
+
+    // get row echelon form
+    bMatrix<T> rowEchelon();
        
     //******Element access*************
  
@@ -113,6 +116,7 @@ class bMatrix
 
     void print();
     bool isSquare();
+    bool isRowEchelon();
 
     bool closeEnough(T f1, T f2);
 

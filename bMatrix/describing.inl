@@ -51,3 +51,18 @@ bool bMatrix<T>::closeEnough(T f1, T f2)
 {
     return fabs(f1-f2) < 1e-9;
 }
+
+template <class T>
+bool bMatrix<T>::isRowEchelon()
+{
+    bool flag = true;
+    for (int i=1; i<m_nRows; i++)
+    {
+        for (int j=0; j<i; j++)
+        {
+            if (m_matrixData[sub2Ind(i,j)] != static_cast<T>(0.0))
+                flag = false;
+        }
+    }    
+    return flag;
+}
