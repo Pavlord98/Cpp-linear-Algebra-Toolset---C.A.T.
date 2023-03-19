@@ -494,3 +494,41 @@ bVector<T> operator* (const bMatrix<T>& A, const bVector<T>& b)
     }
     return result;
 }
+
+template <class T>
+bMatrix<T> bMatrix<T>::rowEchelon()
+{
+    int cRow, cCol;
+    int maxCount = 100;
+    int count = 0;
+    bool completeFlag = false;
+    while ((!completeFlag) && (count < maxCount))
+    {
+        for (int diagIndex=0; diagIndex < m_nRows; diagIndex++)
+        {
+            cRow = diagIndex;
+            cCol = diagIndex;
+
+            for (int rowIndex = cRow+1; rowIndex<m_nRows; rowIndex++)
+            {
+                if (!closeEnough(m_matrixData[sub2Ind(rowIndex, cCol)], 0.0))
+                {
+                    int rowOneIndex = cCol;
+
+                    T currentElementValue = m_matrixData[sub2Ind(rowIndex, cCol)];
+                    T rowOneValue = m_matrixData[sub2Ind(rowOneIndex, cCol)];   
+
+                    if(!closeEnough(rowOneValue, 0.0))
+                    {
+                        T correctionFactor = -(currentElementValue/rowOneValue);
+                        multAdd(rowIndex, rowOneIndex, correctionFactor);
+                    } 
+                }
+            }
+        }
+        completeFlag = this->isRowEchelon();  
+        count++;
+    }  
+    bMatrix<T> outputMatrix(m_nRows, m_nCols, m_matrixData);
+    return outputMatrix;
+}
