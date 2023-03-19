@@ -1,27 +1,27 @@
 #include <iostream>
 #include "bMatrix.h"
 #include "bVector.h"
+#include "gaussElim.h"
 
 int main()
 {
 
-    std::vector<double> vec(3);
+    double array[9] = {2,1,4,3,4,0,1,1,7};
 
-    bVector<double> a(vec);
+    bMatrix<double> A(3,3,array);
 
-    bVector<double> b(vec);
+    A.print();
 
-    a.setElement(0,10.1);
+    bMatrix<double> B = A.rowEchelon();
 
-    b.setElement(0,9.1);
+    B.print();
 
-    //std::cout<<a.getElement(3)<<'\n';
+    std::cout << B.isRowEchelon() << '\n';
 
-    a.print(); 
-
-    bMatrix<double> A(3,3,"ones");
-
-    bVector<double> rez = A*a;
+    A.print();
 
     return 0;
+
+    
 }
+
