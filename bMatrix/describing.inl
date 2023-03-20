@@ -87,9 +87,9 @@ bool bMatrix<T>::isDiagDom()
         for(int j=0; j<this->getNumCols(); j++)
         {
             if(i != j)
-                sum += this->getElement(i,j);
+                sum += abs(this->getElement(i,j));
         }
-        if (aii < sum)
+        if (abs(aii) < sum)
             flag = false;
     }
     return flag;
