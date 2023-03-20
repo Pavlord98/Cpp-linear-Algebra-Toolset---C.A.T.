@@ -94,3 +94,19 @@ bool bMatrix<T>::isDiagDom()
     }
     return flag;
 }
+
+template <class T>
+bool bMatrix<T>::isSym()
+{
+    bool flag = true;
+    bMatrix<T> B = this->transpose();
+    for(int i=0; i < m_nElements; i++)
+    {
+        if (this->getElement(i) != B.getElement(i))
+        {
+            flag = false;
+            return flag;
+        }
+    }
+    return flag;
+}

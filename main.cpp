@@ -12,13 +12,9 @@ int main()
 
     A.print();
 
-    bMatrix<double> B = A.rowEchelon();
+    bMatrix<double> B = A.transpose();
 
     B.print();
-
-    std::cout << B.isRowEchelon() << '\n';
-
-    A.print();
 
     return 0;
 

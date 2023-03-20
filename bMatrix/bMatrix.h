@@ -57,6 +57,7 @@ class bMatrix
     // elementwise multiplication
      
     // transpose
+    bMatrix<T> transpose();
     
     void multAdd(int i, int j, T multFactor);  
     void resize(int row, int col);
@@ -118,6 +119,7 @@ class bMatrix
     bool isSquare();
     bool isRowEchelon();
     bool isDiagDom();
+    bool isSym();
 
     bool closeEnough(T f1, T f2);
 

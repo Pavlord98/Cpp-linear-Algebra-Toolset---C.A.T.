@@ -534,3 +534,17 @@ bMatrix<T> bMatrix<T>::rowEchelon()
     bMatrix<T> outputMatrix(m_nRows, m_nCols, A.m_matrixData);
     return outputMatrix;
 }
+
+template <class T>
+bMatrix<T> bMatrix<T>::transpose()
+{
+    bMatrix<T> Result(this->getNumRows(), this->getNumCols());
+    for (int i=0; i < this->getNumRows(); i++)
+    {
+        for (int j=0; j < this->getNumCols(); j++)
+        {
+            Result.setElement(j,i, this->getElement(i,j));
+        }
+    }
+    return Result;
+}
