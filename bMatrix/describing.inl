@@ -123,4 +123,5 @@ bool bMatrix<T>::isPositive()
             return flag;
         }
     }
+    return flag;
 }
