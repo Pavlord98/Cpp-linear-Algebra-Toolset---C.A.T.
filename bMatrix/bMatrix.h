@@ -120,6 +120,7 @@ class bMatrix
     bool isRowEchelon();
     bool isDiagDom();
     bool isSym();
+    bool isPositive();
 
     bool closeEnough(T f1, T f2);
 

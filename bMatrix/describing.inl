@@ -110,3 +110,17 @@ bool bMatrix<T>::isSym()
     }
     return flag;
 }
+
+template <class T>
+bool bMatrix<T>::isPositive()
+{
+    bool flag = true;
+    for (int i = 0; i< this->getNumRows(); i++)
+    {
+        if (this->getElement(i,i) < 0)
+        {
+            flag = false;
+            return flag;
+        }
+    }
+}
