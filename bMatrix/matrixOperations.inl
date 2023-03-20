@@ -428,7 +428,6 @@ void bMatrix<T>::inverse()
             
         }
         // seperate the result into left and right halves 
-            std::cout << "seperating\n";
             bMatrix<T> leftHalf;
             bMatrix<T> rightHalf;
             this->seperate(&leftHalf, &rightHalf, originalNumCols);
