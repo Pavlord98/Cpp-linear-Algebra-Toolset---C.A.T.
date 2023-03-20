@@ -66,3 +66,31 @@ bool bMatrix<T>::isRowEchelon()
     }    
     return flag;
 }
+
+template <class T>
+bool bMatrix<T>::isSquare()
+{
+    if (this->getNumRows() == this->getNumCols())
+        return true;
+    else
+        return false;
+}
+
+template <class T>
+bool bMatrix<T>::isDiagDom()
+{
+    bool flag = true;
+    for (int i=0; i<this->getNumRows(); i++)
+    {
+        T aii = this->getElement(i,i);
+        T sum = static_cast<T>(0.0);
+        for(int j=0; j<this->getNumCols(); j++)
+        {
+            if(i != j)
+                sum += this->getElement(i,j);
+        }
+        if (aii < sum)
+            flag = false;
+    }
+    return flag;
+}

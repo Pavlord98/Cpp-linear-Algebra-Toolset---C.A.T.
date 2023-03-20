@@ -117,6 +117,7 @@ class bMatrix
     void print();
     bool isSquare();
     bool isRowEchelon();
+    bool isDiagDom();
 
     bool closeEnough(T f1, T f2);
 
