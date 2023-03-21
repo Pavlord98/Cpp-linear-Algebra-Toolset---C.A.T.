@@ -12,7 +12,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Joining and splitting matrices
 * Calculate determinant
 * Solving linear systems with the Gauss Elimination method
-* Gauss Seidel method for solving linear systems
+* Gauss Seidel-method for solving linear systems
 
 ## Features currently in development
 
