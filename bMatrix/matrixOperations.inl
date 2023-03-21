@@ -548,3 +548,34 @@ bMatrix<T> bMatrix<T>::transpose()
     }
     return Result;
 }
+
+template <class T>
+bMatrix<T> bMatrix<T>::operator= (const bMatrix<T> &rhs)
+{
+	// Make sure we're not assigning to ourself.
+	if (this != &rhs)
+	{
+		// If the dimensions are the same, we only need to copy the elements,
+		//	there is no need to delete and re-allocate memory.
+		if ((m_nRows == rhs.m_nRows) && (m_nCols == rhs.m_nCols))
+		{
+			for (int i=0; i<m_nElements; ++i)
+				m_matrixData[i] = rhs.m_matrixData[i];
+		}
+		else
+		{
+			m_nRows = rhs.m_nRows;
+			m_nCols = rhs.m_nCols;
+			m_nElements = rhs.m_nElements;
+			
+			if (m_matrixData)
+				delete[] m_matrixData;
+			
+			m_matrixData = new T[m_nElements];
+			for (int i=0; i<m_nElements; i++)
+				m_matrixData[i] = rhs.m_matrixData[i];	
+		}
+	}
+	
+	return *this;
+}

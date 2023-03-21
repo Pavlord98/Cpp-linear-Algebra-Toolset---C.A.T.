@@ -45,6 +45,7 @@ class bMatrix
     bool operator== (const bMatrix<T>& B);
     bool compare (const bMatrix<T>& B, double tolerance);
     
+    bMatrix<T> operator= (const bMatrix<T> &rhs);
 
     // operator *
     template <class U> friend bMatrix<U> operator* (const bMatrix<U>& A, const bMatrix<U>& B);
