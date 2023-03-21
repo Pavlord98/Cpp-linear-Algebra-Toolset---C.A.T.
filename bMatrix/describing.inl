@@ -144,7 +144,7 @@ T bMatrix<T>::maxElement()
     T max = this->getElement(0);
     for (int i = 0; i < this->getNumRows() * this->getNumCols(); i++)
     {
-        if (this->getElement(i) > min)
+        if (this->getElement(i) > max)
             max = this->getElement(i);
     }
     return max;
