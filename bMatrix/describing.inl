@@ -125,3 +125,27 @@ bool bMatrix<T>::isPositive()
     }
     return flag;
 }
+
+template <class T>
+T bMatrix<T>::minElement()
+{
+    T min = this->getElement(0);
+    for (int i = 0; i < this->getNumRows() * this->getNumCols(); i++)
+    {
+        if (this->getElement(i) < min)
+            min = this->getElement(i);
+    }
+    return min;
+}
+
+template <class T>
+T bMatrix<T>::maxElement()
+{
+    T max = this->getElement(0);
+    for (int i = 0; i < this->getNumRows() * this->getNumCols(); i++)
+    {
+        if (this->getElement(i) > min)
+            max = this->getElement(i);
+    }
+    return max;
+}

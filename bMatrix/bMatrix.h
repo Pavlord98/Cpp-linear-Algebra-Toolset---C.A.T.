@@ -124,6 +124,9 @@ class bMatrix
 
     bool closeEnough(T f1, T f2);
 
+    T minElement();
+    T maxElement();
+
     // operator <<
     template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
     
