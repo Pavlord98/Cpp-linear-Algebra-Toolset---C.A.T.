@@ -19,6 +19,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Advanced indexing and slicing of matrices
 * Symmetric Gaus-Seidel solver
 * Matrix version of the Gauss-Seidel solver
+* Residuals
 
 ## Upcoming feutures
 
