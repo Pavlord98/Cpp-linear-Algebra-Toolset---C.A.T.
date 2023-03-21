@@ -1,5 +1,5 @@
 template <class T>
-void bMatrix<T>::print()
+void bMatrix<T>::print() const
 {
     std::cout<< "=\n";
     for (int i=0; i<m_nRows; i++)
@@ -35,25 +35,25 @@ std::ostream& operator<< (std::ostream& out, const bMatrix<T> A)
 }
 
 template <class T>
-int bMatrix<T>::getNumRows()
+int bMatrix<T>::getNumRows() const
 {
     return m_nRows;
 }
 
 template <class T>
-int bMatrix<T>::getNumCols()
+int bMatrix<T>::getNumCols() const
 {
     return m_nCols;
 }
 
 template <class T>
-bool bMatrix<T>::closeEnough(T f1, T f2)
+bool bMatrix<T>::closeEnough(T f1, T f2) const
 {
     return fabs(f1-f2) < 1e-9;
 }
 
 template <class T>
-bool bMatrix<T>::isRowEchelon()
+bool bMatrix<T>::isRowEchelon() const
 {
     bool flag = true;
     for (int i=1; i<m_nRows; i++)
@@ -68,7 +68,7 @@ bool bMatrix<T>::isRowEchelon()
 }
 
 template <class T>
-bool bMatrix<T>::isSquare()
+bool bMatrix<T>::isSquare() const
 {
     if (this->getNumRows() == this->getNumCols())
         return true;
@@ -77,7 +77,7 @@ bool bMatrix<T>::isSquare()
 }
 
 template <class T>
-bool bMatrix<T>::isDiagDom()
+bool bMatrix<T>::isDiagDom() const
 {
     bool flag = true;
     for (int i=0; i<this->getNumRows(); i++)
@@ -96,7 +96,7 @@ bool bMatrix<T>::isDiagDom()
 }
 
 template <class T>
-bool bMatrix<T>::isSym()
+bool bMatrix<T>::isSym() const
 {
     bool flag = true;
     bMatrix<T> B = this->transpose();
@@ -112,7 +112,7 @@ bool bMatrix<T>::isSym()
 }
 
 template <class T>
-bool bMatrix<T>::isPositive()
+bool bMatrix<T>::isPositive() const
 {
     bool flag = true;
     for (int i = 0; i< this->getNumRows(); i++)
@@ -127,7 +127,7 @@ bool bMatrix<T>::isPositive()
 }
 
 template <class T>
-T bMatrix<T>::minElement()
+T bMatrix<T>::minElement() const
 {
     T min = this->getElement(0);
     for (int i = 0; i < this->getNumRows() * this->getNumCols(); i++)
@@ -139,7 +139,7 @@ T bMatrix<T>::minElement()
 }
 
 template <class T>
-T bMatrix<T>::maxElement()
+T bMatrix<T>::maxElement() const
 {
     T max = this->getElement(0);
     for (int i = 0; i < this->getNumRows() * this->getNumCols(); i++)

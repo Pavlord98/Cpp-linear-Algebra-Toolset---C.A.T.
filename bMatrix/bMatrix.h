@@ -58,7 +58,7 @@ class bMatrix
     // elementwise multiplication
      
     // transpose
-    bMatrix<T> transpose();
+    bMatrix<T> transpose() const;
     
     void multAdd(int i, int j, T multFactor);  
     void resize(int row, int col);
@@ -111,22 +111,22 @@ class bMatrix
     //***********Describing**************** 
     std::string getType();
 
-    void describe(); 
+    void describe() const; 
 
-    int getNumRows();
-    int getNumCols();
+    int getNumRows() const;
+    int getNumCols() const;
 
-    void print();
-    bool isSquare();
-    bool isRowEchelon();
-    bool isDiagDom();
-    bool isSym();
-    bool isPositive();
+    void print() const;
+    bool isSquare() const;
+    bool isRowEchelon() const;
+    bool isDiagDom() const;
+    bool isSym() const;
+    bool isPositive() const;
 
-    bool closeEnough(T f1, T f2);
+    bool closeEnough(T f1, T f2) const;
 
-    T minElement();
-    T maxElement();
+    T minElement() const;
+    T maxElement() const;
 
     // operator <<
     template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);

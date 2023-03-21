@@ -536,7 +536,7 @@ bMatrix<T> bMatrix<T>::rowEchelon()
 }
 
 template <class T>
-bMatrix<T> bMatrix<T>::transpose()
+bMatrix<T> bMatrix<T>::transpose() const
 {
     bMatrix<T> Result(this->getNumRows(), this->getNumCols());
     for (int i=0; i < this->getNumRows(); i++)
