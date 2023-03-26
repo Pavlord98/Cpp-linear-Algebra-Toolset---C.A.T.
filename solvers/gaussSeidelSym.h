@@ -28,9 +28,10 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
     {
         int forwardCount  = 0;
         int backWardCount = A.getNumRows() -1 ;
-        for (int i = 0; i < static_cast<int>(A.getNumRows()/2.0 + 0.9); i++)
+        for (int i = 0; i < A.getNumRows(); i++)
         {
-            
+            if (i&2 == 0)
+            {
                 tempSum = 0;
                 temp = 0;
                 for(int j = 0; j < A.getNumCols(); j++)
@@ -42,8 +43,9 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
                 temp = 1/A.getElement(forwardCount, forwardCount) * (b.getElement(forwardCount) - tempSum);
                 res.setElement(forwardCount, 0, temp);
                 forwardCount++;
-            
-            
+            }
+            else
+            {
                 tempSum = 0;
                 temp = 0;
                 for(int j = 0; j < A.getNumCols(); j++)
@@ -55,7 +57,7 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
                 temp = 1/A.getElement(backWardCount,backWardCount) * (b.getElement(backWardCount) - tempSum);
                 res.setElement(backWardCount, 0, temp);
                 backWardCount--;
-            
+            }
         }
         iter++;
         error = ((A*res) - b);
