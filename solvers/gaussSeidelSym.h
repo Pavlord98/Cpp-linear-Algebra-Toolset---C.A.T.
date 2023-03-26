@@ -9,7 +9,7 @@
 #include "bVector.h"
 
 template <typename T>
-bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000 )
+bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
 {
     
     if ( !A.isDiagDom() || !A.isSym() || !A.isPositive() )
@@ -48,7 +48,7 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
                 temp = 0;
                 for(int j = 0; j < A.getNumCols(); j++)
                 {
-                    if (i != j)
+                    if (backWardCount != j)
                         tempSum += A.getElement(backWardCount,j)*res.getElement(j);
                 }
                 
@@ -61,6 +61,11 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
         error = ((A*res) - b);
     }
     
+    if (verbose)
+    {
+        std::cout << "Reached convergence in : " << iter << " iterations\n";
+    }
+
     return res;
 
 
