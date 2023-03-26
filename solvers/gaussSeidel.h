@@ -9,7 +9,7 @@
 #include "bVector.h"
 
 template <typename T>
-bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000 )
+bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
 {
     
     if ( !A.isDiagDom() || !A.isSym() || !A.isPositive() )
@@ -42,6 +42,12 @@ bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b, double toleran
         iter++;
         error = ((A*res) - b);
     }
+    
+    if (verbose)
+    {
+        std::cout << "Reached convergence in : " << iter << " iterations\n";
+    }
+
     
     return res;
 
