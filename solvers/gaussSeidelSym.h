@@ -9,7 +9,7 @@
 #include "bVector.h"
 
 template <typename T>
-bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
+bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double alpha = 1, double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
 {
     
     if ( !A.isDiagDom() || !A.isSym() || !A.isPositive() )
@@ -40,7 +40,7 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
                         tempSum += A.getElement(forwardCount,j)*res.getElement(j);
                 }
                 
-                temp = 1/A.getElement(forwardCount, forwardCount) * (b.getElement(forwardCount) - tempSum);
+                temp = (1-alpha)*res.getElement(forwardCount) + alpha/A.getElement(forwardCount, forwardCount) * (b.getElement(forwardCount) - tempSum);
                 res.setElement(forwardCount, 0, temp);
                 forwardCount++;
             }
@@ -54,7 +54,7 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double tole
                         tempSum += A.getElement(backWardCount,j)*res.getElement(j);
                 }
                 
-                temp = 1/A.getElement(backWardCount,backWardCount) * (b.getElement(backWardCount) - tempSum);
+                temp = (1-alpha)*res.getElement(backWardCount) + alpha/A.getElement(backWardCount,backWardCount) * (b.getElement(backWardCount) - tempSum);
                 res.setElement(backWardCount, 0, temp);
                 backWardCount--;
             }

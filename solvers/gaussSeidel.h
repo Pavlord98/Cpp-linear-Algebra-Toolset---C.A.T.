@@ -9,7 +9,7 @@
 #include "bVector.h"
 
 template <typename T>
-bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b, double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
+bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b,  double alpha = 1 ,double tolerance = 1e-4, int maxIters=10000, bool verbose = true )
 {
     
     if ( !A.isDiagDom() || !A.isSym() || !A.isPositive() )
@@ -36,7 +36,7 @@ bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b, double toleran
                     tempSum += A.getElement(i,j)*res.getElement(j);
             }
             
-            temp = 1/A.getElement(i,i) * (b.getElement(i) - tempSum);
+            temp = (1 - alpha)*res.getElement(i) + alpha/A.getElement(i,i) * (b.getElement(i) - tempSum);
             res.setElement(i, 0, temp);
         }
         iter++;
