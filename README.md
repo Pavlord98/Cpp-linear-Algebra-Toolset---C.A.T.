@@ -24,7 +24,6 @@ This is a project of mine in which I am developing my own linear algebra library
 
 ## Upcoming feutures
 
-* Special methods for sparse matrices
 * Conjugate and MultiGrid solvers
 * QR decomposition
 * Doxygen documentation
