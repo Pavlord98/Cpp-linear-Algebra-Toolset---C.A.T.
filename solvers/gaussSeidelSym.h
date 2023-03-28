@@ -24,7 +24,7 @@ bMatrix<T> gaussSeidelSym( const bMatrix<T>& A, const bMatrix<T>& b, double alph
     bMatrix<T> error(A.getNumRows(),1,"ones");
     int iter = 0;
 
-    while( error.maxElement() >= tolerance && iter <= maxIters)
+    while( error.L2Norm() >= tolerance && iter <= maxIters)
     {
         int forwardCount  = 0;
         int backWardCount = A.getNumRows() -1 ;

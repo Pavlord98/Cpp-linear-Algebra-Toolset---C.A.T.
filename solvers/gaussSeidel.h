@@ -24,7 +24,7 @@ bMatrix<T> gaussSeidel( const bMatrix<T>& A, const bMatrix<T>& b,  double alpha 
     bMatrix<T> error(A.getNumRows(),1,"ones");
     int iter = 0;
 
-    while( error.maxElement() >= tolerance && iter <= maxIters)
+    while( error.L2Norm() >= tolerance && iter <= maxIters)
     {
         for (int i = 0; i < A.getNumRows(); i++)
         {
