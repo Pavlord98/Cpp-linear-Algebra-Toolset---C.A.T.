@@ -266,7 +266,7 @@ void bMatrix<T>::seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum)
 }
 
 template <class T>
-void bMatrix<T>::join(const bMatrix<T>& B)
+void bMatrix<T>::joinHor(const bMatrix<T>& B)
 {
     // get size
     int numRows1 = m_nRows;
@@ -303,6 +303,52 @@ void bMatrix<T>::join(const bMatrix<T>& B)
 
     //update stored data
     m_nCols = numCols1 + numCols2;
+    m_nElements = m_nRows * m_nCols;
+    delete[] m_matrixData;
+    m_matrixData = new T[m_nElements];
+    for (int i=0; i<m_nElements; i++)
+        m_matrixData[i] = newMatrixData[i];
+    delete[] newMatrixData;
+}
+
+template <class T>
+void bMatrix<T>::joinVert(const bMatrix<T>& B)
+{
+    // get size
+    int numRows1 = m_nRows;
+    int numRows2 = B.m_nRows;
+    int numCols1 = m_nCols;
+    int numCols2 = B.m_nCols;
+
+    // check dimensions
+    if (numCols1 != numCols2)
+        throw std::invalid_argument("incompatable sizes!");
+
+    // Allocate memory for the result
+    T* newMatrixData = new T[numCols1*(numRows1 + numRows2)];
+
+    // copy the two matrices into the new one
+    int index, resultIndex;
+    for (int j=0; j<numCols1; j++)
+    {
+        for (int i=0; i<(numRows1 +numRows2); i++)
+        {
+            resultIndex = j*(numRows1+numRows2) + i;
+            if (i<numRows1)
+            {
+                index = j*(numRows1) + i;
+                newMatrixData[resultIndex] = m_matrixData[index];
+            }
+            else
+            {
+                index = j*(numRows2) + i - numRows1;
+                newMatrixData[resultIndex] = B.m_matrixData[index];
+            }
+        }
+    }
+
+    //update stored data
+    m_nRows = numRows1 + numRows2;
     m_nElements = m_nRows * m_nCols;
     delete[] m_matrixData;
     m_matrixData = new T[m_nElements];

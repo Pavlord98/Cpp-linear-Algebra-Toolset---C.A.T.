@@ -62,7 +62,8 @@ class bMatrix
     
     void multAdd(int i, int j, T multFactor);  
     void resize(int row, int col);
-    void join(const bMatrix<T>& B);
+    void joinHor(const bMatrix<T>& B);
+    void joinVert(const bMatrix<T>& B);
     void swapRow(int i, int j);
     void seperate(bMatrix<T> *A, bMatrix<T> *B, int colNum);
     void multRow(int i, T multFactor);
