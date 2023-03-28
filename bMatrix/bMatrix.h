@@ -128,6 +128,10 @@ class bMatrix
     T minElement() const;
     T maxElement() const;
 
+    double L1Norm() const;
+    double L2Norm() const;
+    T LInfNorm() const;
+
     // operator <<
     template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);
     

@@ -149,3 +149,31 @@ T bMatrix<T>::maxElement() const
     }
     return max;
 }
+
+template <class T>
+double bMatrix<T>::L1Norm() const
+{
+    double sum = 0;
+    for (int i=0; i<m_nElements; i++)
+    {
+        sum += abs(this->getElement(i));
+    }
+    return sum/m_nElements;
+}
+
+template <class T>
+double bMatrix<T>::L2Norm() const
+{
+    double sum = 0;
+    for (int i=0; i<m_nElements; i++)
+    {
+        sum += this->getElement(i) * this->getElement(i);
+    }
+    return sqrt(sum/m_nElements); 
+}
+
+template <class T>
+T bMatrix<T>::LInfNorm() const
+{
+    return abs(this->maxElement());   
+}
