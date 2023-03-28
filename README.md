@@ -14,6 +14,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Solving linear systems with the Gauss Elimination method
 * Gauss-Seidel method for solving linear systems with under-relaxation
 * Symmetric Gaus-Seidel solver
+* compute norms (L1, L2 and Linf)
 
 ## Features currently in development
 
