@@ -12,12 +12,12 @@ This is a project of mine in which I am developing my own linear algebra library
 * Joining and splitting matrices
 * Calculate determinant
 * Solving linear systems with the Gauss Elimination method
-* Gauss-Seidel method for solving linear systems
+* Gauss-Seidel method for solving linear systems with under-relaxation
+* Symmetric Gaus-Seidel solver
 
 ## Features currently in development
 
 * Advanced indexing and slicing of matrices
-* Symmetric Gaus-Seidel solver
 * Matrix version of the Gauss-Seidel solver
 * Residuals
 
