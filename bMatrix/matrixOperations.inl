@@ -402,7 +402,7 @@ void bMatrix<T>::inverse()
 
     // join the identity matrix to the existing matrix
     int originalNumCols = m_nCols;
-    join(IdentiyMatrix);
+    joinHor(IdentiyMatrix);
 
     // begin main part of the process
     int cRow, cCol;
