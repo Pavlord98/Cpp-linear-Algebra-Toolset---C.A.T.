@@ -21,7 +21,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Advanced indexing and slicing of matrices
 * Matrix version of the Gauss-Seidel solver
 
-## Upcoming feutures
+## Upcoming features
 
 * Conjugate and MultiGrid solvers
 * QR decomposition
