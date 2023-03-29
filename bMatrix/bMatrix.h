@@ -26,11 +26,8 @@ class bMatrix
     
     ~bMatrix();
 
-
-    //******Matrix operations*************
-    // operator =
-    //template <class U> friend bMatrix<U> operator= (const bMatrix<U>& A, const bMatrix<U>& B);
-
+    //*************Arithmetic******************
+    
     // operator +
     template <class U> friend bMatrix<U> operator+ (const bMatrix<U>& A, const bMatrix<U>& B);
     template <class U> friend bMatrix<U> operator+ (const U& a, const bMatrix<U>& A);
@@ -56,7 +53,10 @@ class bMatrix
     template <class U> friend bVector<U> operator* (const bMatrix<U>& A, const bVector<U>& b);
 
     // elementwise multiplication
-     
+   
+
+    //******Matrix operations*************
+    
     // transpose
     bMatrix<T> transpose() const;
     
