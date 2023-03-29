@@ -71,9 +71,6 @@ class bMatrix
     // inverse
     void inverse();
 
-    // determinate
-    T det();
-
     // get row echelon form
     bMatrix<T> rowEchelon();
        
@@ -132,6 +129,10 @@ class bMatrix
     double L1Norm() const;
     double L2Norm() const;
     T LInfNorm() const;
+
+    // determinate
+    T det();
+    
 
     // operator <<
     template <class U> friend std::ostream& operator<< (std::ostream& out, const bMatrix<U> A);

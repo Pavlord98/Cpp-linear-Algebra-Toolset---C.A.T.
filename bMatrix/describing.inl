@@ -177,3 +177,28 @@ T bMatrix<T>::LInfNorm() const
 {
     return abs(this->maxElement());   
 }
+
+template <class T>
+T bMatrix<T>::det()
+{
+    // some assertions
+
+    T determinant;
+    if (m_nRows == 2)
+    {
+        determinant = (m_matrixData[0] * m_matrixData[3]) - (m_matrixData[1] * m_matrixData[2]);
+    }
+    else 
+    {
+        T cumSum = 0.0;
+        T sign = 1.0; // try int
+        for (int j=0; j<m_nCols; j++)
+        {
+            bMatrix<T> subMatrix(this->findSubMatrix(0,j));
+            cumSum += this->getElement(0,j) * subMatrix.det() * sign;
+            sign = -sign;
+        }
+        determinant = cumSum;
+    }
+    return determinant;
+}
