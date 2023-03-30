@@ -1,5 +1,8 @@
-# linAlg
+# Cpp (linear) Algebra Toolset -- C.A.T.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/84512701/228799226-e5f098f8-0922-4c2a-bdb9-336a649074d9.png"/>
+</p>
 This is a project of mine in which I am developing my own linear algebra library for personal use and practice.
 
 ## Current Features
