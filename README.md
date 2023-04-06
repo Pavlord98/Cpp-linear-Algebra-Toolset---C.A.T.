@@ -23,7 +23,6 @@ This is a project of mine in which I am developing my own linear algebra library
 ## Features currently in development
 
 * Advanced indexing and slicing of matrices
-* Matrix version of the Gauss-Seidel solver
 
 ## Upcoming features
 
