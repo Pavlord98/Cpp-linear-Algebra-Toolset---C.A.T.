@@ -3,6 +3,16 @@
 #include "bVector.h"
 #include "gaussElim.h"
 #include "gaussSeidel.h"
+<<<<<<< Updated upstream
+=======
+#include "gaussSeidelSym.h"
+
+#include "conjugateGradient.h"
+
+#include "Solver.h"
+#include "jacobi.h"
+#include <memory>
+>>>>>>> Stashed changes
 
 int main()
 {
@@ -19,9 +29,28 @@ int main()
 
     b.print();
 
+<<<<<<< Updated upstream
     bMatrix<double> result = gaussSeidel(A, b);
     
     //bMatrix<double> result = A*b - b;
+=======
+    std::string name{"Jacobi"};
+
+    std::unique_ptr<Solver> solver;
+    if(name=="Jacobi")
+    {
+        solver.reset(new JacobiSolver);
+    }
+    else if(name == "GaussSeidel")
+    {
+        solver.reset(new GaussSeidelSolver);
+    }
+    else
+    {
+
+    }
+    bMatrix<double> result = solver->solve(A, b);
+>>>>>>> Stashed changes
 
     result.print();
 
