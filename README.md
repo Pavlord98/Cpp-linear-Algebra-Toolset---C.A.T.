@@ -18,6 +18,7 @@ This is a project of mine in which I am developing my own linear algebra library
 * Gauss-Seidel method for solving linear systems with under-relaxation
 * Symmetric Gaus-Seidel solver
 * compute norms (L1, L2 and Linf)
+* Conjugate Gradient solver
 
 ## Features currently in development
 
@@ -26,7 +27,7 @@ This is a project of mine in which I am developing my own linear algebra library
 
 ## Upcoming features
 
-* Conjugate and MultiGrid solvers
+* MultiGrid solver
 * QR decomposition
 * Doxygen documentation
 
