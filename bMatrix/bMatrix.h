@@ -52,6 +52,9 @@ class bMatrix
     // matrix * vector
     template <class U> friend bVector<U> operator* (const bMatrix<U>& A, const bVector<U>& b);
 
+    // dot product
+    T dot(const bMatrix<T>& b);
+    
     // elementwise multiplication
    
 
@@ -152,6 +155,8 @@ class bMatrix
 #include "matrixOperations.inl"
 
 #include "describing.inl"
+
+#include "arithmetic.inl"
 
 
 #endif

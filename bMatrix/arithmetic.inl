@@ -269,3 +269,14 @@ bMatrix<T> bMatrix<T>::operator= (const bMatrix<T> &rhs)
 	
 	return *this;
 }
+
+template <class T>
+T bMatrix<T>::dot(const bMatrix<T>& b)
+{
+    T result = static_cast<T>(0.0);
+    for (int i=0; i<this->m_nElements; i++)
+    {
+        result += this->getElement(i) * b.getElement(i);
+    }
+    return result;
+}
